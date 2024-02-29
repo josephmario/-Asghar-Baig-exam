@@ -1,0 +1,17 @@
+<!-- user_profile_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}User Profile List{% endblock %}
+
+{% block content %}
+  <h2>User Profile List</h2>
+  <ul>
+    {% for user_profile in user_profiles %}
+      <li>
+        <strong>Username:</strong> {{ user_profile.username }}<br>
+        <strong>Name:</strong> {{ user_profile.name }}<br>
+        <strong>Mobile Number:</strong> {{ user_profile.mobile_number }}<br> 
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

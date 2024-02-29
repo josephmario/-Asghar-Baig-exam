@@ -1,0 +1,30 @@
+<!-- myapp/templates/payment_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Payment List - My Django Project{% endblock %}
+
+{% block content %}
+  <h2>Payment List</h2>
+  <ul>
+    {% for payment in payments %}
+      <li>
+        <strong>Payer:</strong> {{ payment.payer.username }}<br>
+        <strong>Amount:</strong> {{ payment.amount }}<br>
+        <strong>Recipients:</strong> {{ payment.recipients.all|join:', ' }}<br>
+        <strong>Per Person:</strong>
+        {% if payment.split_equally %}
+            {% if payment.per_person is not None %}
+                {{ payment.per_person|floatformat:2 }}
+            {% else %}
+                N/A
+            {% endif %}
+        {% else %}
+            N/A
+        {% endif %}
+        <br>
+        <strong>Split Equally:</strong> {% if payment.split_equally %}Yes{% else %}No{% endif %}<br>
+        <strong>Date Paid:</strong> {{ payment.date_paid }}<br>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
